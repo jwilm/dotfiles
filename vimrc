@@ -32,3 +32,9 @@ set smartcase
 
 execute pathogen#infect()
 
+
+" Set 256 color mode
+set t_Co=256
+let base16colorspace=256
+
+colorscheme molokai
