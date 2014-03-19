@@ -1,3 +1,7 @@
+" Use pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
+
 set nu " Line numbers
 
 " Indentation
@@ -22,8 +26,6 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Use pathogen
-execute pathogen#infect()
 
 " Set 256 color mode
 set t_Co=256
@@ -43,3 +45,9 @@ highlight OverLength ctermbg=black
 match OverLength /\%81v.\+/
 
 set nowrap
+
+" Undo buffer awesomeness
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
