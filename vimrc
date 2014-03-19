@@ -34,7 +34,7 @@ let base16colorspace=256
 " Color scheme
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme twilight
 
 " Configuration for emmet (zen coding) - only enable for html, css, hbs
 let g:user_emmet_install_global = 0
