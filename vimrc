@@ -28,12 +28,12 @@ set smartcase
 
 " Set 256 color mode
 set t_Co=256
-let base16colorspace=256
+" let base16colorspace=256
 
 " Color scheme
 syntax enable
 set background=dark
-colorscheme twilight
+color twilight
 
 " Configuration for emmet (zen coding) - only enable for html, css, hbs
 let g:user_emmet_install_global = 0
@@ -71,8 +71,7 @@ set tags=./tags;/
 
 " Highlight things over 80 columns
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+call matchadd('OverLength', '\%>80v.\+')
+
+" show column number, etc. on bottom right
 set ruler
-
-set colorcolumn=81
-
