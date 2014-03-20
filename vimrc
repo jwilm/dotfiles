@@ -75,3 +75,7 @@ call matchadd('OverLength', '\%>80v.\+')
 
 " show column number, etc. on bottom right
 set ruler
+
+" disable JSDoc comment highlighting in javascript
+let javascript_ignore_javaScriptdoc=1
+
