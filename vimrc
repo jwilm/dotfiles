@@ -14,9 +14,11 @@ set shiftwidth=4
 set smarttab
 set expandtab
 
-au FileType python set expandtab
 au FileType python set tabstop=4
 au FileType python set shiftwidth=4
+
+au FileType javascript set tabstop=2
+au FileType javascript set shiftwidth=2
 
 set showmatch " Show matching brackets
 
@@ -36,8 +38,6 @@ set background=dark
 color twilight
 
 " Configuration for emmet (zen coding) - only enable for html, css, hbs
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,hbs EmmetInstall
 
 set nowrap
 
