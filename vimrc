@@ -2,7 +2,8 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-set nu " Line numbers
+" Line numbers
+set nu
 
 " Indentation
 filetype plugin indent on
@@ -19,6 +20,10 @@ au FileType python set shiftwidth=4
 
 au FileType javascript set tabstop=2
 au FileType javascript set shiftwidth=2
+
+au FileType markdown set tw=80
+au FileType markdown set formatoptions+=t
+au FileType markdown set wm=2
 
 set showmatch " Show matching brackets
 
@@ -46,7 +51,6 @@ set undofile
 set undodir=$HOME/.vim/undo
 set undolevels=1000
 set undoreload=10000
-
 
 "Use TAB to complete when typing words, else inserts TABs as usual.
 "Uses dictionary and source files to find matching words to complete.
@@ -78,4 +82,11 @@ set ruler
 
 " disable JSDoc comment highlighting in javascript
 let javascript_ignore_javaScriptdoc=1
+
+""""""""""""""""""""""""""
+"       plugins          "
+""""""""""""""""""""""""""
+
+" vim-markdown
+let g:vim_markdown_folding_disabled=1
 
