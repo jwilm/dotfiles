@@ -18,12 +18,16 @@ set expandtab
 au FileType python set tabstop=4
 au FileType python set shiftwidth=4
 
-au FileType javascript set tabstop=2
-au FileType javascript set shiftwidth=2
+au FileType javascript set tabstop=4
+au FileType javascript set shiftwidth=4
 
 au FileType markdown set tw=80
 au FileType markdown set formatoptions+=t
 au FileType markdown set wm=2
+
+autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2 expandtab
+autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2 expandtab
+autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2 expandtab
 
 set showmatch " Show matching brackets
 
@@ -36,15 +40,6 @@ set smartcase
 " Set 256 color mode
 set t_Co=256
 " let base16colorspace=256
-
-" Color scheme
-syntax enable
-set background=dark
-color twilight
-
-" Configuration for emmet (zen coding) - only enable for html, css, hbs
-
-set nowrap
 
 " Undo buffer awesomeness
 set undofile
@@ -70,15 +65,15 @@ endfunction
 :inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
 :set dictionary="/usr/dict/words"
 
+
+" :noremap <C-T> :tnext<CR>
+
 " load tags file if found
 set tags=./tags;/
 
-" Highlight things over 80 columns
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-call matchadd('OverLength', '\%>80v.\+')
-
 " show column number, etc. on bottom right
 set ruler
+set nowrap
 
 " disable JSDoc comment highlighting in javascript
 let javascript_ignore_javaScriptdoc=1
@@ -89,4 +84,49 @@ let javascript_ignore_javaScriptdoc=1
 
 " vim-markdown
 let g:vim_markdown_folding_disabled=1
+
+
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+" set viminfo='10,\"100,:20,%,n~/.viminfo
+set viminfo='10,\"100,:20,%,n~/.viminfo
+
+" Cursor restoring stuff
+function! ResCur()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call ResCur()
+augroup END
+
+" Code Folding
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
+
+" Coffeescript folding -- why is this necessary?
+autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
+
+" Enable mouse scroll
+set mouse=a
+
+" Color scheme
+syntax enable
+set background=dark
+color twilight
+
+" Highlight things over 80 columns
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+call matchadd('OverLength', '\%>80v.\+')
+
 
