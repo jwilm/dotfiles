@@ -28,6 +28,8 @@ au FileType markdown set tw=80
 au FileType markdown set formatoptions+=t
 au FileType markdown set wm=2
 
+let g:vim_json_syntax_conceal = 0
+
 autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2 expandtab
