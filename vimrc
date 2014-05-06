@@ -134,6 +134,9 @@ color twilight
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 autocmd BufNew,BufEnter * call matchadd('OverLength', '\%>80v.\+')
 
+set nocompatible
+set backspace=2
+
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
