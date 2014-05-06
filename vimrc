@@ -130,8 +130,8 @@ syntax enable
 set background=dark
 color twilight
 
-" Highlight things over 80 columns
+" Highlight things over 80 columns - run in autocmds so ctrl.p doesnt break
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-call matchadd('OverLength', '\%>80v.\+')
+autocmd BufNew,BufEnter * call matchadd('OverLength', '\%>80v.\+')
 
 
