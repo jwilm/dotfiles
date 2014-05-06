@@ -1,5 +1,7 @@
 [color]
 	ui = true
+[core]
+    editor = /usr/local/bin/vim
 [user]
 	name = Joe Wilm
 	email = joe@gameclosure.com
