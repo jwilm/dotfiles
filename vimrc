@@ -134,9 +134,7 @@ color twilight
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 autocmd BufNew,BufEnter * call matchadd('OverLength', '\%>80v.\+')
 
-" Ignore
-let g:ctrlp_custom_ignore = 'node_modules'
-
+" Fix backspaces in vim 7.4 on mac
 set nocompatible
 set backspace=2
 
