@@ -72,3 +72,5 @@ alias gsl="git --no-pager stash list"
 
 export PS1="${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}"
 export PATH=/usr/local/bin:$PATH
+
+alias ag='ag --ignore-dir unity --ignore tags'
