@@ -18,6 +18,8 @@ set expandtab
 au FileType python set tabstop=4
 au FileType python set shiftwidth=4
 
+autocmd BufNewFile,BufReadPost *.yml setl ts=2 sw=2 expandtab
+
 au FileType javascript set tabstop=4
 au FileType javascript set shiftwidth=4
 
