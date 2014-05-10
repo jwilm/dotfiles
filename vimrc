@@ -1,6 +1,7 @@
 " Use pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
+Helptags
 
 " Line numbers
 set nu
@@ -147,3 +148,24 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
+" syntastic
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_jshint_conf = $HOME . '/.jshintrc'
+
+" Custom status line. Matches `ruler` and adds fugitive#statusline()
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" syntastic error window toggle
+function! ToggleErrors()
+    let old_last_winnr = winnr('$')
+    lclose
+    if old_last_winnr == winnr('$')
+    " Nothing was closed, open syntastic error location
+        Errors
+    endif
+endfunction
+" bring up syntastic error list
+nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
+
+" Clear search highlights
+nnoremap <Space> :let @/ = ""<CR>
