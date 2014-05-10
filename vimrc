@@ -44,7 +44,7 @@ set ignorecase
 set smartcase
 
 " Set 256 color mode
-set t_Co=256
+" set t_Co=256
 " let base16colorspace=256
 
 " Undo buffer awesomeness
@@ -129,7 +129,7 @@ set mouse=a
 " Color scheme
 syntax enable
 set background=dark
-color twilight
+colorscheme solarized
 
 " Highlight things over 80 columns - run in autocmds so ctrl.p doesnt break
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
