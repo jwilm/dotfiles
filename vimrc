@@ -36,7 +36,7 @@ autocmd BufNewFile,BufReadPost *.yml setl ts=2 sw=2 expandtab
 
 au FileType javascript set tabstop=4
 au FileType javascript set shiftwidth=4
-au FileType javascript set noexpandtab
+au FileType javascript set expandtab
 
 au FileType markdown set tw=80
 au FileType markdown set formatoptions+=t
