@@ -3,6 +3,19 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 Helptags
 
+" Color scheme
+syntax enable
+set background=dark
+colorscheme solarized
+
+if g:colors_name == 'solarized'
+    " `Special` in solarized is red. It's distracting. Fix it.
+    hi link jsThis Identifier
+    hi link jsGlobalObjects Identifier
+    hi link jsBuiltins Identifier
+    hi link jsPrototype Identifier
+endif
+
 " Line numbers
 set nu
 
@@ -125,11 +138,6 @@ autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
 " Enable mouse scroll
 set mouse=a
-
-" Color scheme
-syntax enable
-set background=dark
-colorscheme solarized
 
 " Highlight things over 80 columns - run in autocmds so ctrl.p doesnt break
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
