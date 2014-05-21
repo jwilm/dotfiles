@@ -34,8 +34,8 @@ au FileType python set shiftwidth=4
 
 autocmd BufNewFile,BufReadPost *.yml setl ts=2 sw=2 expandtab
 
-au FileType javascript set tabstop=4
-au FileType javascript set shiftwidth=4
+au FileType javascript set tabstop=2
+au FileType javascript set shiftwidth=2
 au FileType javascript set expandtab
 
 au FileType markdown set tw=80
@@ -176,4 +176,7 @@ endfunction
 nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
 
 " Clear search highlights
-nnoremap <Space> :let @/ = ""<CR>
+nnoremap <silent> <Space> :let @/ = ""<CR>
+
+inoremap jj <Esc>
+
