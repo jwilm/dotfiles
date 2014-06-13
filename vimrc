@@ -189,6 +189,9 @@ inoremap jj <Esc>
 " set list listchars=tab:»·,trail:·
 set list listchars=tab:»\ ,trail:·,nbsp:.
 
+" Java
+let g:syntastic_java_javac_config_file_enabled=1
+
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
