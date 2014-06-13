@@ -184,3 +184,16 @@ nnoremap <silent> <Space> :let @/ = ""<CR>
 
 inoremap jj <Esc>
 
+" Change listchars to something sensible
+" set list listchars=tab:»·,trail:·
+set list listchars=tab:»\ ,trail:·,nbsp:.
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
+" Quick window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
