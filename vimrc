@@ -16,6 +16,10 @@ if g:colors_name == 'solarized'
     hi link jsPrototype Identifier
 endif
 
+" Change .swp file location
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+
 " Line numbers
 set nu
 
