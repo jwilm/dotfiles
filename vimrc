@@ -93,6 +93,7 @@ endfunction
 
 " load tags file if found
 set tags=./tags;/
+set tags+=~/tags
 
 " show column number, etc. on bottom right
 set ruler
