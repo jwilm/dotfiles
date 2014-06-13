@@ -70,7 +70,7 @@ export PATH="/Users/jwilm/.rvm/gems/ruby-2.1.0/bin:/Users/jwilm/.rvm/gems/ruby-2
 
 alias gsl="git --no-pager stash list"
 
-export PS1="${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}"
+export PS1="%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}"
 export PATH=/usr/local/bin:$PATH
 
 alias ag='ag --ignore-dir unity --ignore tags'
