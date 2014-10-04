@@ -43,3 +43,9 @@
 [submodule "vim/bundle/vim-tmux-navigator"]
 	path = vim/bundle/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "vim/bundle/vim-stylus"]
+	path = vim/bundle/vim-stylus
+	url = https://github.com/wavded/vim-stylus.git
+[submodule "vim/bundle/vim-glsl"]
+	path = vim/bundle/vim-glsl
+	url = https://github.com/tikhomirov/vim-glsl.git

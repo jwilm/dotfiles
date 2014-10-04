@@ -1,20 +1,11 @@
+" Fix backspaces in vim 7.4 on mac
+set nocompatible
+set backspace=2
+
 " Use pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 Helptags
-
-" Color scheme
-syntax enable
-set background=dark
-colorscheme solarized
-
-if g:colors_name == 'solarized'
-    " `Special` in solarized is red. It's distracting. Fix it.
-    hi link jsThis Identifier
-    hi link jsGlobalObjects Identifier
-    hi link jsBuiltins Identifier
-    hi link jsPrototype Identifier
-endif
 
 " Change .swp file location
 set backupdir=~/.vim/backup//
@@ -28,19 +19,16 @@ filetype plugin indent on
 set ai " Autoident
 set cindent
 
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set smarttab
 set expandtab
 
 au FileType python set tabstop=4
 au FileType python set shiftwidth=4
 
-autocmd BufNewFile,BufReadPost *.yml setl ts=2 sw=2 expandtab
-
-au FileType javascript set tabstop=2
-au FileType javascript set shiftwidth=2
-au FileType javascript set expandtab
+au FileType stylus set ts=4 sw=4 expandtab
+au FileType sass set ts=4 sw=4 expandtab
 
 au FileType markdown set tw=80
 au FileType markdown set formatoptions+=t
@@ -48,9 +36,14 @@ au FileType markdown set wm=2
 
 let g:vim_json_syntax_conceal = 0
 
+autocmd BufNewFile,BufReadPost .bash_aliases* set filetype=sh
+autocmd BufNewFile,BufReadPost *.yml setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2 expandtab
+
+" Highlight tmux conf (does not work)
+" autocmd BufNewFile,BufRead,BufReadPost *.tmux.conf,*tmux.conf setf tmux set syntax=tmux
 
 set showmatch " Show matching brackets
 
@@ -109,7 +102,6 @@ let javascript_ignore_javaScriptdoc=1
 " vim-markdown
 let g:vim_markdown_folding_disabled=1
 
-
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
@@ -144,14 +136,6 @@ autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 " Enable mouse scroll
 set mouse=a
 
-" Highlight things over 80 columns - run in autocmds so ctrl.p doesnt break
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-autocmd BufNew,BufEnter * call matchadd('OverLength', '\%>80v.\+')
-
-" Fix backspaces in vim 7.4 on mac
-set nocompatible
-set backspace=2
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -161,9 +145,15 @@ if executable('ag')
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
 
+let g:ctrlp_working_path_mode='c'
+
 " syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_enable_signs = 1
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_jshint_conf = $HOME . '/.jshintrc'
+let g:syntastic_javascript_jshint_conf = '~/.jshintrc'
+let g:syntastic_java_javac_config_file_enabled = 1
+" autocmd BufEnter *.js SyntasticCheck jshint
 
 " Custom status line. Matches `ruler` and adds fugitive#statusline()
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -189,8 +179,6 @@ inoremap jj <Esc>
 " set list listchars=tab:»·,trail:·
 set list listchars=tab:»\ ,trail:·,nbsp:.
 
-" Java
-let g:syntastic_java_javac_config_file_enabled=1
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
@@ -201,3 +189,23 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-h> <C-w>h
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Color scheme
+syntax enable
+set background=dark
+colorscheme solarized
+
+if g:colors_name == 'solarized'
+    " `Special` in solarized is red. It's distracting. Fix it.
+    hi link jsThis Identifier
+    hi link jsGlobalObjects Identifier
+    hi link jsBuiltins Identifier
+    hi link jsPrototype Identifier
+endif
+
+" Highlight things over 80 columns - run in autocmds so ctrl.p doesnt break.
+" This MUST come after the color scheme declaration since most colorschemes
+" begin with `hi clear`.
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+autocmd BufNew,BufEnter,BufNewFile,BufReadPost * call matchadd('OverLength', '\%>80v.\+')
+

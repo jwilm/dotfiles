@@ -24,7 +24,7 @@ ZSH_THEME="robbyrussell"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"
@@ -74,3 +74,19 @@ export PS1="%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blu
 export PATH=/usr/local/bin:$PATH
 
 alias ag='ag --ignore-dir unity --ignore tags'
+
+_find() {
+    find . -iname "*$1*"
+}
+
+_findfile() {
+    find . -type f -iname "*$1*"
+}
+
+_finddir() {
+    find . -type d -iname "*$1*"
+}
+
+alias f=_find
+alias ff=_findfile
+alias fd=_finddir
