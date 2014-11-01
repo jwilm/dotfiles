@@ -1,0 +1,15 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "indent": 2,
+  "quotmark": "single",
+  "maxdepth": 3,
+  "maxlen": 80,
+  "eqnull": true,
+  "esnext": true,
+  "funcscope": true,
+  "laxbreak": true,
+  "laxcomma": true,
+  "expr": true
+}
