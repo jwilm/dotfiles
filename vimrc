@@ -193,6 +193,8 @@ nnoremap <C-l> <C-w>l
 " Color scheme
 syntax enable
 set background=dark
+let g:solarized_termcolors=16
+set t_Co=16
 colorscheme solarized
 
 if g:colors_name == 'solarized'
