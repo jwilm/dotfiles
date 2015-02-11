@@ -49,3 +49,6 @@
 [submodule "vim/bundle/vim-glsl"]
 	path = vim/bundle/vim-glsl
 	url = https://github.com/tikhomirov/vim-glsl.git
+[submodule "theme/gnome-terminal-colors-solarized"]
+	path = theme/gnome-terminal-colors-solarized
+	url = https://github.com/sigurdga/gnome-terminal-colors-solarized.git
