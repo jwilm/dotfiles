@@ -22,6 +22,7 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"
+#
 
 # Uncomment following line if you want to disable autosetting terminal title.
 DISABLE_AUTO_TITLE="true"
@@ -67,7 +68,6 @@ export PATH="/Users/jwilm/.rvm/gems/ruby-2.1.0/bin:/Users/jwilm/.rvm/gems/ruby-2
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-
 alias gsl="git --no-pager stash list"
 
 export PS1="%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}"
@@ -90,3 +90,8 @@ _finddir() {
 alias f=_find
 alias ff=_findfile
 alias fd=_finddir
+
+if [ "$(uname)" = "Linux" ] ; then
+  export TERM="xterm-256color"
+  xset r rate 250 50
+fi
