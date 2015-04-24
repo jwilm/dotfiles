@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/Users/jwilm/.rvm/gems/ruby-2.1.0/bin:/Users/jwilm/.rvm/gems/ruby-2.1.0@global/bin:/Users/jwilm/.rvm/rubies/ruby-2.1.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/jwilm/bin:/Users/jwilm/.rvm/bin"
+# export PATH="/Users/jwilm/.rvm/gems/ruby-2.1.0/bin:/Users/jwilm/.rvm/gems/ruby-2.1.0@global/bin:/Users/jwilm/.rvm/rubies/ruby-2.1.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/jwilm/bin:/Users/jwilm/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -71,7 +71,9 @@ export PATH="/Users/jwilm/.rvm/gems/ruby-2.1.0/bin:/Users/jwilm/.rvm/gems/ruby-2
 alias gsl="git --no-pager stash list"
 
 export PS1="%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}"
-export PATH=/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/local/android-sdk-linux/tools
+export PATH=$PATH:/usr/local/android-sdk-linux/platform-tools
+export PATH=$PATH:/usr/local/android-ndk
 
 alias ag='ag --ignore-dir unity --ignore tags'
 
