@@ -52,3 +52,9 @@
 [submodule "theme/gnome-terminal-colors-solarized"]
 	path = theme/gnome-terminal-colors-solarized
 	url = https://github.com/sigurdga/gnome-terminal-colors-solarized.git
+[submodule "vim/bundle/widl"]
+	path = vim/bundle/widl
+	url = https://github.com/aldafu/vim-widl.git
+[submodule "vim/bundle/YouCompleteMe"]
+	path = vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
