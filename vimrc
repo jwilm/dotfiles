@@ -19,18 +19,11 @@ filetype plugin indent on
 set ai " Autoident
 set cindent
 
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set smarttab
 set expandtab
 
-au FileType python set tabstop=4
-au FileType python set shiftwidth=4
-
-au FileType stylus set ts=4 sw=4 expandtab
-au FileType sass set ts=4 sw=4 expandtab
-
-au FileType markdown set tw=80
 au FileType markdown set formatoptions+=t
 au FileType markdown set wm=2
 
@@ -38,9 +31,11 @@ let g:vim_json_syntax_conceal = 0
 
 autocmd BufNewFile,BufReadPost .bash_aliases* set filetype=sh
 autocmd BufNewFile,BufReadPost *.yml setl sw=2 ts=2 expandtab
+autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2 expandtab
 autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2 expandtab
+autocmd BufNewFile,BufReadPost *.rs setl sw=4 ts=4 expandtab tw=99
 
 " Highlight tmux conf (does not work)
 " autocmd BufNewFile,BufRead,BufReadPost *.tmux.conf,*tmux.conf setf tmux set syntax=tmux
@@ -134,7 +129,7 @@ set foldlevel=1
 autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
 " Enable mouse scroll
-set mouse=a
+" set mouse=a
 
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
@@ -169,9 +164,6 @@ function! ToggleErrors()
 endfunction
 " bring up syntastic error list
 nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
-
-" Clear search highlights
-nnoremap <silent> <Space> :let @/ = ""<CR>
 
 inoremap jj <Esc>
 
@@ -211,3 +203,13 @@ endif
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 autocmd BufNew,BufEnter,BufNewFile,BufReadPost * call matchadd('OverLength', '\%>80v.\+')
 
+runtime ftplugin/man.vim
+
+let mapleader="\<Space>"
+
+" Clear search highlights
+nnoremap <silent> <Leader><Leader> :let @/ = ""<CR>
+
+nnoremap <Leader>g YcmCompleter GoTo<CR>
+
+set cursorline
