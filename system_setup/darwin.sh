@@ -29,13 +29,14 @@ ZSH_BINARY=/usr/local/bin/zsh
 brew install zsh
 sudo su root -c "echo ${ZSH_BINARY} >> /etc/shells"
 
-# Make zsh shell for current user
+# Install oh-my-zsh. The oh-my-zsh install script tries to run chsh, so skip it
+# on travis (it blocks for a password)
 if [[ ! $TRAVIS ]] ; then
-    sudo chsh -s $ZSH_BINARY $USER
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
-# Install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# Make zsh shell for current user
+sudo chsh -s $ZSH_BINARY $USER
 
 # Use brew git
 brew install git
