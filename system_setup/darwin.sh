@@ -37,6 +37,10 @@ if [[ ! $TRAVIS ]] ; then
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 fi
 
+# After installing oh-my-zsh, the zshrc will be their default. We want to link
+# ours later.
+rm ~/.zshrc
+
 # Make zsh shell for current user
 sudo chsh -s $ZSH_BINARY $USER
 
