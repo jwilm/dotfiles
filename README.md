@@ -1,14 +1,6 @@
 dotfiles
 ========
 
-My personal dotfiles. This README is only here to catalogue the various brew
-formulas I depend upon.
+Configuration for my systems
 
-## Formula Dependencies
-
-- **tmux**
-- **reattach-to-user-namespace** - _tmux_ clipboard sharing with OS X
-- **ag**
-- **vim** - OS X built in vim was not compiled with clipboard support
-- **ack**
-
+[![Build Status](https://travis-ci.org/jwilm/dotfiles.svg)](https://travis-ci.org/jwilm/dotfiles)
