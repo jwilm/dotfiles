@@ -30,7 +30,9 @@ brew install zsh
 sudo su root -c "echo ${ZSH_BINARY} >> /etc/shells"
 
 # Make zsh shell for current user
-sudo chsh -s $ZSH_BINARY $USER
+if [[ ! $TRAVIS ]] ; then
+    sudo chsh -s $ZSH_BINARY $USER
+fi
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
