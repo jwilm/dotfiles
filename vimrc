@@ -7,95 +7,52 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 Helptags
 
-" Change .swp file location
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
+let mapleader="\<Space>"
 
-" Line numbers
-set nu
+set backupdir=~/.vim/backup// " backup files go here
+set directory=~/.vim/swap//   " swap files go here
 
 " Indentation
 filetype plugin indent on
-set ai " Autoident
-set cindent
+set autoindent " Autoident
+set cindent    " indent with C indentation rules
 
-set tabstop=4
-set shiftwidth=4
-set smarttab
-set expandtab
+set tabstop=4           " columns per tab
+set shiftwidth=4        " tabs expand to spaces with expandtab on
+set smarttab            " backspace tabwidths at start of line
+set expandtab           " expand tabs into spaces
+set cursorline          " Hightlights current line of cursor
+set completeopt=menu    " shows completions in popup
+set modeline            " read modelines at start of files
+set colorcolumn=81      " add ruler at column
+set textwidth=80        " wrap text starting here
+set number              " show linenumbers
+set hlsearch            " highlight searches
+set incsearch           " show results while typing
+set ignorecase          " case insensitive
+set smartcase           " if search string has case, be case sensitive
+set showmatch           " Show matching bracket when cursor on bracket
+set undofile            " persist undo history
+set undodir=$HOME/.vim/undo " keep undo files here
+set undolevels=1000     " maximum number of changes that can be undone
+set undoreload=10000    " save whole buffer to undo on reload (:e)
+set dictionary="/usr/dict/words" "dictionary for `set spell`
+set ruler               " show line/col of cursor
+set nowrap              " disable softwrap
+set tags=./tags;/       " tags file
+set tags+=~/tags        " other places for tags
+set splitbelow          " open horizontal splits below
+set splitright          " open vertical splits to right
 
-au FileType markdown set formatoptions+=t
-au FileType markdown set wm=2
+" Code Folding
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=1
 
-let g:vim_json_syntax_conceal = 0
-
-autocmd BufNewFile,BufReadPost .bash_aliases* set filetype=sh
-autocmd BufNewFile,BufReadPost *.yml setl sw=2 ts=2 expandtab
-autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2 expandtab
-autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2 expandtab
-autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2 expandtab
-autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2 expandtab
-autocmd BufNewFile,BufReadPost *.rs setl sw=4 ts=4 expandtab tw=99
-
-" Highlight tmux conf (does not work)
-" autocmd BufNewFile,BufRead,BufReadPost *.tmux.conf,*tmux.conf setf tmux set syntax=tmux
-
-set showmatch " Show matching brackets
-
-" highlight searches
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-" Set 256 color mode
-" set t_Co=256
-" let base16colorspace=256
-
-" Undo buffer awesomeness
-set undofile
-set undodir=$HOME/.vim/undo
-set undolevels=1000
-set undoreload=10000
-
-"Use TAB to complete when typing words, else inserts TABs as usual.
-"Uses dictionary and source files to find matching words to complete.
-
-"See help completion for source,
-"Note: usual completion is on <C-n> but more trouble to press all the time.
-"Never type the same word twice and maybe learn a new spellings!
-"Use the Linux dictionary when spelling is in doubt.
-"Window users can copy the file to their machine.
-function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-:set dictionary="/usr/dict/words"
-
-
-" :noremap <C-T> :tnext<CR>
-
-" load tags file if found
-set tags=./tags;/
-set tags+=~/tags
-
-" show column number, etc. on bottom right
-set ruler
-set nowrap
-
-" disable JSDoc comment highlighting in javascript
-let javascript_ignore_javaScriptdoc=1
-
-""""""""""""""""""""""""""
-"       plugins          "
-""""""""""""""""""""""""""
-
-" vim-markdown
-let g:vim_markdown_folding_disabled=1
+" Change listchars to something sensible
+" set list listchars=tab:»·,trail:·
+set list listchars=tab:»\ ,trail:·,nbsp:.
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -106,7 +63,15 @@ let g:vim_markdown_folding_disabled=1
 " set viminfo='10,\"100,:20,%,n~/.viminfo
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
-" Cursor restoring stuff
+" Custom status line. Matches `ruler` and adds fugitive#statusline()
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+" Load man page plugin
+runtime ftplugin/man.vim
+
+" ------------------------------------------------------------------------------
+" Restore cursor to previous line when entering buffer
+" ------------------------------------------------------------------------------
 function! ResCur()
   if line("'\"") <= line("$")
     normal! g`"
@@ -119,18 +84,51 @@ augroup resCur
   autocmd BufWinEnter * call ResCur()
 augroup END
 
-" Code Folding
-set foldmethod=indent
-set foldnestmax=10
-set nofoldenable
-set foldlevel=1
+
+" ------------------------------------------------------------------------------
+" Filetype specific settings
+" ------------------------------------------------------------------------------
+
+au FileType gitcommit set tw=72
+autocmd BufNewFile,BufReadPost .bash_aliases* set filetype=sh
+autocmd BufNewFile,BufReadPost *.yml setl sw=2 ts=2
+autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2
+autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2
+autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2
+autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2
+autocmd BufNewFile,BufReadPost *.rs setl sw=4 ts=4 tw=100 cc=101
+autocmd BufNewFile,BufReadPost *.py setl sw=2 ts=2 tw=79 cc=80 nocindent
+autocmd BufNewFile,BufReadPost *.rs hi link rustCommentLineDoc Comment
 
 " Coffeescript folding -- why is this necessary?
 autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
-" Enable mouse scroll
-" set mouse=a
+" ------------------------------------------------------------------------------
+" misc keybindings
+" ------------------------------------------------------------------------------
 
+" escape is just so far away
+inoremap jj <Esc>
+
+" Quick window movement
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Clear search highlights
+nnoremap <silent> <Space><Space> :let @/ = ""<CR>
+
+" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+" @@@@@@@@@@@@@@@@@@@@@@@@@@@ PLUGIN CONFIGURATION @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+" @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+" ------------------------------------------------------------------------------
+" CtrlP Configuration
+" ------------------------------------------------------------------------------
+
+" CtrlP search uses the silver searcher instead of grep
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -142,16 +140,22 @@ endif
 
 let g:ctrlp_working_path_mode='c'
 
+
+" ------------------------------------------------------------------------------
 " syntastic
+" ------------------------------------------------------------------------------
+
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_javascript_jshint_conf = '~/.jshintrc'
 let g:syntastic_java_javac_config_file_enabled = 1
-" autocmd BufEnter *.js SyntasticCheck jshint
 
-" Custom status line. Matches `ruler` and adds fugitive#statusline()
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+" Syntastic python settings
+let g:syntastic_python_checkers = [ 'flake8', 'python' ]
+let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 
 " syntastic error window toggle
 function! ToggleErrors()
@@ -162,33 +166,22 @@ function! ToggleErrors()
         Errors
     endif
 endfunction
+
 " bring up syntastic error list
 nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
 
-inoremap jj <Esc>
 
-" Change listchars to something sensible
-" set list listchars=tab:»·,trail:·
-set list listchars=tab:»\ ,trail:·,nbsp:.
+" ------------------------------------------------------------------------------
+" color scheme and syntax highlighting
+" ------------------------------------------------------------------------------
 
-
-" Open new split panes to right and bottom, which feels more natural
-set splitbelow
-set splitright
-
-" Quick window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-h> <C-w>h
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-" Color scheme
 syntax enable
 set background=dark
 let g:solarized_termcolors=16
 set t_Co=16
 colorscheme solarized
 
+" Tweak js highlighting for solarized
 if g:colors_name == 'solarized'
     " `Special` in solarized is red. It's distracting. Fix it.
     hi link jsThis Identifier
@@ -197,19 +190,47 @@ if g:colors_name == 'solarized'
     hi link jsPrototype Identifier
 endif
 
-" Highlight things over 80 columns - run in autocmds so ctrl.p doesnt break.
-" This MUST come after the color scheme declaration since most colorschemes
-" begin with `hi clear`.
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-autocmd BufNew,BufEnter,BufNewFile,BufReadPost * call matchadd('OverLength', '\%>80v.\+')
 
-runtime ftplugin/man.vim
+" ------------------------------------------------------------------------------
+" YouCompleteMe
+" ------------------------------------------------------------------------------
+let g:ycm_always_populate_location_list = 1
+let g:ycm_warning_symbol = '->'
+let g:ycm_error_symbol = '=>'
+let g:ycm_server_log_level = 'debug'
 
-let mapleader="\<Space>"
+" Global extra conf is the .ycm_extra_conf.py in the dotfiles folder
+let g:ycm_global_ycm_extra_conf = $HOME . '/.dotfiles/.ycm_extra_conf.py'
 
-" Clear search highlights
-nnoremap <silent> <Leader><Leader> :let @/ = ""<CR>
+" Rust source path for YCM
+let g:ycm_rust_src_path  = $HOME . '/rs/std/stable'
+let g:ycm_racerd_binary_path = $HOME . '/code/racerd/target/release/racerd'
 
-nnoremap <Leader>g YcmCompleter GoTo<CR>
+nnoremap <F5> :YcmRestartServer<CR>
+nnoremap <F6> :YcmToggleLogs<CR>
 
-set cursorline
+nnoremap <Leader>] :YcmCompleter GoTo<CR>
+
+
+" ------------------------------------------------------------------------------
+" vim-javascript
+" ------------------------------------------------------------------------------
+
+" prevent hightlight of jsdoc comments
+let javascript_ignore_javaScriptdoc=1
+
+
+" ------------------------------------------------------------------------------
+" vim-markdown
+" ------------------------------------------------------------------------------
+
+let g:vim_markdown_folding_disabled=1
+
+
+" ------------------------------------------------------------------------------
+" vim-json
+" ------------------------------------------------------------------------------
+
+" Anything that uses vim conceal is banished
+let g:vim_json_syntax_conceal = 0
+
