@@ -71,27 +71,23 @@ source $ZSH/oh-my-zsh.sh
 alias gsl="git --no-pager stash list"
 
 export PS1="%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}"
+
+# Update path
+
+# Android stuff
 export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/local/android-sdk-linux/tools
 export PATH=$PATH:/usr/local/android-sdk-linux/platform-tools
 export PATH=$PATH:/usr/local/android-ndk
 
-alias ag='ag --ignore-dir unity --ignore tags'
+# Local pip installs
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
 
-_find() {
-    find . -iname "*$1*"
-}
+# Ag alias
+alias ag='ag --ignore tags'
 
-_findfile() {
+ff() {
     find . -type f -iname "*$1*"
 }
-
-_finddir() {
-    find . -type d -iname "*$1*"
-}
-
-alias f=_find
-alias ff=_findfile
-alias fd=_finddir
 
 if [ "$(uname)" = "Linux" ] ; then
   export TERM="xterm-256color"
