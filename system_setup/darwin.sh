@@ -108,6 +108,22 @@ curl -O http://media.nodnod.net/Inconsolata-dz.otf.zip
 unzip Inconsolata-dz.otf.zip
 open Inconsolata-dz.otf
 
+# Install Seil. This allows remapping of capslock to backspace
+pushd $DOWNLOADS
+curl -O https://pqrs.org/osx/karabiner/files/Seil-12.0.0.dmg
+sudo hdiutil attach Seil-12.0.0.dmg
+$SEIL_PATH=/Volumes/Seil-12.0.0
+sudo installer -pkg $SEIL_PATH/Seil.sparkle_guided.pkg  -target /
+sudo hdiutil detach $SEIL_PATH
+popd
+
+if [[ ! $TRAVIS ]] ; then
+    # Map capslock to backspace. /Applications is read-only on travis.
+    SEIL=/Applications/Seil.app/Contents/Library/bin/seil
+    $SEIL set enable_capslock 1
+    $SEIL set keycode_capslock 51
+fi
+
 # misc packages...
 if [[ ! $TRAVIS ]] ; then
     # wireshark takes a while to build, skip it.
