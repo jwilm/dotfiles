@@ -48,7 +48,12 @@ DISABLE_AUTO_TITLE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git zsh-syntax-highlighting github)
 
-source $ZSH/oh-my-zsh.sh
+OH_MY_ZSH=$ZSH/oh-my-zsh.sh
+if [[ -z $OH_MY_ZSH ]] ; then
+    source $ZSH/oh-my-zsh.sh
+else
+    echo "oh-my-zsh is not installed"
+fi
 
 # User configuration
 
