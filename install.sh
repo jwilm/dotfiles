@@ -17,4 +17,5 @@ symlink_dotfile "vimrc"
 symlink_dotfile "vim"
 symlink_dotfile "zshrc"
 
+tmux/install.sh
 system_setup/configure_git.sh
