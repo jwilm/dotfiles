@@ -13,7 +13,9 @@ chown_usr_local
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 chown_usr_local
 
-brew update
+# This is super noisey
+brew update > /dev/null
+echo "brew updated."
 
 # Need GPG for some of the other installations
 brew install gpg
@@ -49,13 +51,16 @@ brew link --force openssl
 sudo easy_install pip
 
 # VirtualBox
-pushd $DOWNLOADS
-curl -O http://download.virtualbox.org/virtualbox/5.0.10/VirtualBox-5.0.10-104061-OSX.dmg
-sudo hdiutil attach VirtualBox-5.0.10-104061-OSX.dmp
-cd /Volumes/VirtualBox
-sudo installer -pkg VirtualBox.pkg -target /
-chown_usr_local
-popd
+if [[ ! $TRAVIS ]] ; then
+    # This particular download is really slow on travis
+    pushd $DOWNLOADS
+    curl -O http://download.virtualbox.org/virtualbox/5.0.10/VirtualBox-5.0.10-104061-OSX.dmg
+    sudo hdiutil attach VirtualBox-5.0.10-104061-OSX.dmp
+    cd /Volumes/VirtualBox
+    sudo installer -pkg VirtualBox.pkg -target /
+    chown_usr_local
+    popd
+fi
 
 # python dev
 pip install --user flake8
