@@ -80,9 +80,12 @@ git submodule update --init
 ./build.sh
 sudo ./install.sh
 multirust update stable
-multirust update beta
-multirust update nightly
 multirust default stable
+if [[ ! $TRAVIS ]] ; then
+    # Installing multiple toolchains in ci is a waste of time
+    multirust update beta
+    multirust update nightly
+fi
 popd
 
 # Install iTerm2
@@ -102,7 +105,10 @@ unzip Inconsolata-dz.otf.zip
 open Inconsolata-dz.otf
 
 # misc packages...
-brew install wireshark --with-qt
+if [[ ! $TRAVIS ]] ; then
+    # wireshark takes a while to build, skip it.
+    brew install wireshark --with-qt
+fi
 brew install ag
 brew install irssi
 brew install ctags
