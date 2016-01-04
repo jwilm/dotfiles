@@ -31,4 +31,4 @@ function build_ycm_completers() {
     fi
 }
 
-build_ycm_completers
+# build_ycm_completers
