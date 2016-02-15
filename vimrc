@@ -107,6 +107,10 @@ autocmd BufNewFile,BufReadPost *.rs hi link rustCommentLineDoc Comment
 " Coffeescript folding -- why is this necessary?
 autocmd BufNewFile,BufReadPost *.coffee setl foldmethod=indent
 
+let g:markdown_fenced_languages = [
+    \     'html', 'vim', 'ruby', 'python', 'bash=sh', 'rust'
+    \ ]
+
 " ------------------------------------------------------------------------------
 " misc keybindings
 " ------------------------------------------------------------------------------
