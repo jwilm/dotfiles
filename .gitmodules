@@ -67,3 +67,9 @@
 [submodule "vim/bundle/python-indent"]
 	path = vim/bundle/python-indent
 	url = https://github.com/Valloric/python-indent.git
+[submodule "vim/bundle/vim-ruby"]
+	path = vim/bundle/vim-ruby
+	url = git@github.com:vim-ruby/vim-ruby.git
+[submodule "vim/bundle/vim-bundler"]
+	path = vim/bundle/vim-bundler
+	url = git@github.com:tpope/vim-bundler.git
