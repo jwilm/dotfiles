@@ -12,11 +12,14 @@ let mapleader="\<Space>"
 set backupdir=~/.vim/backup// " backup files go here
 set directory=~/.vim/swap//   " swap files go here
 
-" Indentation
-filetype plugin indent on
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
 set autoindent " Autoident
 set cindent    " indent with C indentation rules
 
+set re=1                " Use the old regex engine
 set tabstop=4           " columns per tab
 set shiftwidth=4        " tabs expand to spaces with expandtab on
 set smarttab            " backspace tabwidths at start of line
@@ -96,6 +99,7 @@ autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2
+autocmd BufNewFile,BufReadPost *.rb setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.rs setl sw=4 ts=4 tw=100 cc=101
 autocmd BufNewFile,BufReadPost *.py setl sw=2 ts=2 tw=79 cc=80 nocindent
 autocmd BufNewFile,BufReadPost *.rs hi link rustCommentLineDoc Comment
