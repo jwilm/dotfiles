@@ -127,6 +127,27 @@ nnoremap <C-l> <C-w>l
 " Clear search highlights
 nnoremap <silent> <Space><Space> :let @/ = ""<CR>
 
+" Run cargo test and open output in new buffer
+command! Ctest call s:RunCargoTest()
+function! s:RunCargoTest()
+    let winnr = bufwinnr('^_cargo_test')
+    let curnr = bufwinnr('%')
+
+    if ( winnr >= 0 )
+        execute winnr . 'wincmd w'
+    else
+        vert new _cargo_test
+        set ft=cargo
+        setlocal buftype=nofile bufhidden=hide noswapfile nobuflisted
+    endif
+
+    execute 'normal ggdG'
+    0read! cargo test --color=never
+    call cursor(1, 1)
+    execute curnr . 'wincmd w'
+endfunction
+nnoremap <silent> <F8> :silent :Ctest<CR>
+
 " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 " @@@@@@@@@@@@@@@@@@@@@@@@@@@ PLUGIN CONFIGURATION @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
