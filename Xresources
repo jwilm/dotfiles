@@ -74,8 +74,8 @@
 !
 
 ! font, kerning
-URxvt.font: xft:Inconsolata-dz:size=9:antialias=true
-URxvt.letterSpace: -2
+URxvt.font: xft:Inconsolata-dz:size=10:antialias=true
+URxvt.letterSpace: 0
 
 ! Disable the URxvt scrollbar
 URxvt.scrollBar: false
