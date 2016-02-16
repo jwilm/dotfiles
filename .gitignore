@@ -1,4 +1,5 @@
 *.swp
 *.swo
 vim/undo
-
+tmux.conf
+gitconfig
