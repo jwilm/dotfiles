@@ -96,7 +96,7 @@ popd
 pushd $DOWNLOADS
 https://iterm2.com/downloads/stable/iTerm2-2_1_4.zip
 unzip iTerm2-2_1_4.zip
-mv iTerm.app /Applications/
+sudo mv iTerm.app /Applications/
 popd
 
 # Install solarized theme for iTerm2
@@ -113,7 +113,7 @@ pushd $DOWNLOADS
 curl -O https://pqrs.org/osx/karabiner/files/Seil-12.0.0.dmg
 sudo hdiutil attach Seil-12.0.0.dmg
 $SEIL_PATH=/Volumes/Seil-12.0.0
-sudo installer -pkg $SEIL_PATH/Seil.sparkle_guided.pkg  -target /
+sudo installer -pkg $SEIL_PATH/Seil.sparkle_guided.pkg -target /
 sudo hdiutil detach $SEIL_PATH
 popd
 
@@ -153,7 +153,7 @@ pushd $DOWNLOADS
 curl -O https://dl.google.com/chrome/mac/stable/GGRM/googlechrome.dmg
 sudo hdiutil attach googlechrome.dmg
 cd "/Volumes/Google Chrome"
-mv "Google Chrome.app" /Applications/
+sudo mv "Google Chrome.app" /Applications/
 popd
 sudo hdiutil detach "/Volumes/Google Chrome"
 
