@@ -98,3 +98,9 @@ if [ "$(uname)" = "Linux" ] ; then
   export TERM="xterm-256color"
   xset r rate 250 50
 fi
+
+LOCAL_CONFIG=$(pwd)/private
+if [ -e $LOCAL_CONFIG ]
+then
+    source $LOCAL_CONFIG
+fi
