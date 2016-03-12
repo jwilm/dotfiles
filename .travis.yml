@@ -1,5 +1,0 @@
-os: osx
-
-script:
-  - system_setup/darwin.sh
-  - system_setup/check_environment.sh
