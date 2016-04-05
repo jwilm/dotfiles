@@ -242,6 +242,17 @@ nnoremap <Leader>] :YcmCompleter GoTo<CR>
 
 
 " ------------------------------------------------------------------------------
+" ultisnips
+" ------------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger = "<right>"
+let g:UltiSnipsJumpForwardTrigger = "<right>"
+let g:UltiSnipsJumpBackwardTrigger = "<left>"
+
+" UltiSnips will search each 'runtimepath' directory for the subdirectory names
+" defined in g:UltiSnipsSnippetDirectories in the order they are defined.
+let g:UltiSnipsSnippetDirectories = ["snips"]
+
+" ------------------------------------------------------------------------------
 " vim-javascript
 " ------------------------------------------------------------------------------
 

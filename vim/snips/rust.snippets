@@ -1,0 +1,41 @@
+snippet error_enum "Define an enum Error" b
+#[derive(Debug)]
+pub enum ${1:Error} {
+	${2:VariantName}
+}
+
+impl ::std::error::Error for $1 {
+	fn cause(&self) -> Option<&::std::error::Error> {
+		match *self {
+			$1::$2
+		}
+	}
+
+	fn description(&self) -> &str {
+		match *self {
+			$1::$2
+		}
+	}
+}
+
+impl ::std::fmt::Display for $1 {
+	fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+		match *self {
+			$1::$2
+		}
+	}
+}
+$0
+endsnippet
+
+snippet from "impl From<A> for B" b
+impl From<${1:From}> for ${2:To} {
+	fn from(val: $1) -> $2 {
+		$0
+	}
+}
+endsnippet
+
+snippet result "pub type Result<T> = ..." b
+pub type Result<T> = ::std::result::Result<T, ${0:Error}>;
+endsnippet
