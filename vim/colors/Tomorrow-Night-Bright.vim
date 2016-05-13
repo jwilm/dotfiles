@@ -8,7 +8,7 @@ let s:foreground = "eaeaea"
 let s:background = "000000"
 let s:selection = "424242"
 let s:line = "2a2a2a"
-let s:comment = "868886"
+let s:comment = "555555"
 let s:red = "d54e53"
 let s:orange = "e78c45"
 let s:yellow = "e7c547"
@@ -287,7 +287,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("SpecialComment", s:red, "", "")
 	call <SID>X("Debug", s:red, "", "")
 
-	call <SID>X("PreProc", s:yellow, "", "none")
+	call <SID>X("PreProc", s:red, "", "none")
 	call <SID>X("Define", s:orange, "", "none")
 	call <SID>X("Include", s:orange, "", "")
 	call <SID>X("Macro", s:red, "", "")
