@@ -77,6 +77,7 @@ runtime ftplugin/man.vim
 " ------------------------------------------------------------------------------
 
 autocmd! GUIEnter * set vb t_vb=
+autocmd! GUIEnter * set guioptions=
 
 " ------------------------------------------------------------------------------
 " Restore cursor to previous line when entering buffer
@@ -212,9 +213,9 @@ nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
 
 syntax enable
 set background=dark
-let g:solarized_termcolors=16
+" let g:solarized_termcolors=16
 set t_Co=16
-colorscheme solarized
+colorscheme Tomorrow-Night-Bright
 
 " Tweak js highlighting for solarized
 if g:colors_name == 'solarized'
