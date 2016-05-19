@@ -17,6 +17,7 @@ let s:aqua = "70c0b1"
 let s:blue = "7aa6da"
 let s:purple = "c397d8"
 let s:window = "4d5057"
+let s:diffbg = "232323"
 
 hi clear
 syntax reset
@@ -285,7 +286,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("Special", s:red, "", "")
 	call <SID>X("SpecialChar", s:red, "", "")
 	call <SID>X("Tag", s:red, "", "")
-	call <SID>X("Delimiter", s:orange, "", "")
+	call <SID>X("Delimiter", s:aqua, "", "")
 	call <SID>X("SpecialComment", s:red, "", "")
 	call <SID>X("Debug", s:red, "", "")
 
@@ -314,19 +315,24 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("phpMemberSelector", s:foreground, "", "")
 
 	" Ruby Highlighting
-	call <SID>X("rubySymbol", s:green, "", "")
-	call <SID>X("rubyConstant", s:yellow, "", "")
+	call <SID>X("rubySymbol", s:red, "", "")
+	call <SID>X("rubyConstant", s:orange, "", "")
 	call <SID>X("rubyAccess", s:yellow, "", "")
 	call <SID>X("rubyAttribute", s:blue, "", "")
 	call <SID>X("rubyInclude", s:blue, "", "")
 	call <SID>X("rubyLocalVariableOrMethod", s:orange, "", "")
-	call <SID>X("rubyCurlyBlock", s:orange, "", "")
+	call <SID>X("rubyCurlyBlock", s:foreground, "", "")
 	call <SID>X("rubyStringDelimiter", s:green, "", "")
-	call <SID>X("rubyInterpolationDelimiter", s:orange, "", "")
 	call <SID>X("rubyConditional", s:purple, "", "")
 	call <SID>X("rubyRepeat", s:purple, "", "")
 	call <SID>X("rubyControl", s:purple, "", "")
 	call <SID>X("rubyException", s:purple, "", "")
+	call <SID>X("rubyDefine", s:purple, "", "")
+	call <SID>X("rubyClass", s:purple, "", "")
+	call <SID>X("rubyClassDeclaration", s:orange, "", "")
+	call <SID>X("rubyArrayDelimiter", s:aqua, "", "")
+	call <SID>X("rubyInterpolationDelimiter", s:aqua, "", "")
+	call <SID>X("rubyCurlyBlockDelimiter", s:aqua, "", "")
 
 	" Python Highlighting
 	call <SID>X("pythonInclude", s:purple, "", "")
@@ -359,6 +365,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	" Diff Highlighting
 	call <SID>X("diffAdded", s:green, "", "")
 	call <SID>X("diffRemoved", s:red, "", "")
+	call <SID>X("DiffDelete", s:red, s:diffbg, "")
+	call <SID>X("DiffAdd", s:green, s:diffbg, "")
+	call <SID>X("DiffText", s:blue, s:diffbg, "")
+	call <SID>X("DiffChange", s:yellow, s:diffbg, "")
 
 	" Lua Highlighting
 	call <SID>X("luaStatement", s:purple, "", "")
@@ -386,6 +396,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rustSigil", s:aqua, "", "")
 	call <SID>X("rustAssert", s:red, "", "")
 	call <SID>X("rustSelf", s:purple, "", "")
+	call <SID>X("rustTodo", s:yellow, "", "bold")
 
 	" Delete Functions
 	delf <SID>X
