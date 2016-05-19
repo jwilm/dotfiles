@@ -78,8 +78,12 @@ runtime ftplugin/man.vim
 
 if has("gui_running")
   set guioptions=
-  map <silent> <F11>
-  \    :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+  if has('mac')
+    nnoremap <silent> <F11> :set fu!<CR>
+  else
+    map <silent> <F11>
+    \    :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+  endif
 endif
 
 " ------------------------------------------------------------------------------
