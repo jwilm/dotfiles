@@ -15,7 +15,7 @@ ZSH_THEME="robbyrussell"
 # CASE_SENSITIVE="true"
 
 # Uncomment this to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -46,7 +46,7 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-syntax-highlighting github)
+plugins=(git)
 
 OH_MY_ZSH=$ZSH/oh-my-zsh.sh
 if [[ -e $OH_MY_ZSH ]] ; then
@@ -74,8 +74,9 @@ fi
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias gsl="git --no-pager stash list"
+alias vim="vim -g"
 
-export PS1="%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ %{$fg_bold[blue]%}%{$fg_bold[blue]%} % %{$reset_color%}"
+export PS1="%n@%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ % %{$reset_color%} "
 
 # Update path
 
@@ -96,11 +97,17 @@ ff() {
 
 if [ "$(uname)" = "Linux" ] ; then
   export TERM="xterm-256color"
-  xset r rate 250 50
+  xset r rate 250 100
 fi
 
-LOCAL_CONFIG=$(pwd)/private
+LOCAL_CONFIG=$HOME/.dotfiles/private
 if [ -e $LOCAL_CONFIG ]
 then
     source $LOCAL_CONFIG
 fi
+
+cclear() {
+    clear && tmux clear-history
+}
+
+source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
