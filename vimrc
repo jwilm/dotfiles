@@ -76,8 +76,11 @@ runtime ftplugin/man.vim
 " GuiVim
 " ------------------------------------------------------------------------------
 
-autocmd! GUIEnter * set vb t_vb=
-autocmd! GUIEnter * set guioptions=
+if has("gui_running")
+  set guioptions=
+  map <silent> <F11>
+  \    :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+endif
 
 " ------------------------------------------------------------------------------
 " Restore cursor to previous line when entering buffer

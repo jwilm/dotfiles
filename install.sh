@@ -16,6 +16,7 @@ function symlink_dotfile() {
 symlink_dotfile "vimrc"
 symlink_dotfile "vim"
 symlink_dotfile "zshrc"
+symlink_dotfile "gvimrc"
 
 tmux/install.sh
 system_setup/configure_git.sh
