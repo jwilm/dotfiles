@@ -13,10 +13,16 @@ function symlink_dotfile() {
     fi
 }
 
+mkdirp $HOME/.config/
+
 symlink_dotfile "vimrc"
 symlink_dotfile "vim"
 symlink_dotfile "zshrc"
 symlink_dotfile "gvimrc"
+
+# NeoVim symlinks
+ln -s $HOME/.vim $HOME/.config/nvim
+ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
 
 tmux/install.sh
 system_setup/configure_git.sh
