@@ -74,7 +74,6 @@ fi
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 alias gsl="git --no-pager stash list"
-alias vim="vim -g"
 
 export PS1="%n@%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ % %{$reset_color%} "
 
@@ -111,3 +110,4 @@ cclear() {
 }
 
 source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+alias vim=nvim
