@@ -1,5 +1,9 @@
+if has("nvim")
+  nmap <BS> <C-W>h
+  set termguicolors
+end
+
 " Fix backspaces in vim 7.4 on mac
-set nocompatible
 set backspace=2
 
 " Use pathogen
@@ -64,7 +68,10 @@ set list listchars=tab:»\ ,trail:·,nbsp:.
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
 " set viminfo='10,\"100,:20,%,n~/.viminfo
-set viminfo='10,\"100,:20,%,n~/.viminfo
+if has("nvim")
+else
+  set viminfo='10,\"100,:20,%,n~/.shada
+end
 
 " Custom status line. Matches `ruler` and adds fugitive#statusline()
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
@@ -220,8 +227,6 @@ nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
 
 syntax enable
 set background=dark
-" let g:solarized_termcolors=16
-set t_Co=16
 colorscheme Tomorrow-Night-Bright
 
 " Tweak js highlighting for solarized
