@@ -396,6 +396,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rustSigil", s:aqua, "", "")
 	call <SID>X("rustAssert", s:red, "", "")
 	call <SID>X("rustSelf", s:purple, "", "")
+	call <SID>X("rustModPathSep", s:orange, "", "")
 	call <SID>X("rustTodo", s:yellow, "", "bold")
 
 	" Delete Functions
