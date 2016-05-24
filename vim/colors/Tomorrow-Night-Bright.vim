@@ -8,7 +8,7 @@ let s:foreground = "eaeaea"
 let s:background = "000000"
 let s:selection = "424242"
 let s:line = "2a2a2a"
-let s:comment = "555555"
+let s:comment = "767876"
 let s:red = "d54e53"
 let s:orange = "e78c45"
 let s:yellow = "e7c547"
@@ -409,7 +409,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("gitcommitDiscardedFile", s:foreground, "", "")
 	call <SID>X("gitcommitHeader", s:yellow, "", "")
 	call <SID>X("gitcommitBranch", s:blue, "", "")
-	call <SID>X("gitcommitSummary", s:orange, "", "")
+	call <SID>X("gitcommitSummary", s:orange, "", "bold")
 	call <SID>X("gitcommitUntrackedFile", s:comment, "", "")
 
 	" Delete Functions
