@@ -409,7 +409,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("gitcommitDiscardedFile", s:foreground, "", "")
 	call <SID>X("gitcommitHeader", s:yellow, "", "")
 	call <SID>X("gitcommitBranch", s:blue, "", "")
-	call <SID>X("gitcommitSummary", s:orange, "", "bold")
+	call <SID>X("gitcommitSummary", s:purple, "", "bold")
 	call <SID>X("gitcommitUntrackedFile", s:comment, "", "")
 
 	" Delete Functions
