@@ -110,4 +110,3 @@ cclear() {
 }
 
 source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-alias vim=nvim
