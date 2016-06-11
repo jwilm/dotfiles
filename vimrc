@@ -121,7 +121,7 @@ autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.coffee setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2
-autocmd BufNewFile,BufReadPost *.rb setl sw=2 ts=2
+autocmd BufNewFile,BufReadPost *.rb setl sw=2 ts=2 nocursorline
 autocmd BufNewFile,BufReadPost *.rs setl sw=4 ts=4 tw=100 cc=101
 autocmd BufNewFile,BufReadPost *.py setl sw=2 ts=2 tw=79 cc=80 nocindent
 autocmd BufNewFile,BufReadPost *.rs hi link rustCommentLineDoc Comment
