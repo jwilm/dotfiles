@@ -335,6 +335,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rubyArrayDelimiter", s:aqua, "", "")
 	call <SID>X("rubyInterpolationDelimiter", s:aqua, "", "")
 	call <SID>X("rubyCurlyBlockDelimiter", s:aqua, "", "")
+	call <SID>X("rubyTodo", s:yellow, "", "bold")
 
 	" Python Highlighting
 	call <SID>X("pythonInclude", s:purple, "", "")
