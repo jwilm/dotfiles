@@ -216,6 +216,8 @@ let g:syntastic_java_javac_config_file_enabled = 1
 let g:syntastic_python_checkers = [ 'flake8', 'python' ]
 let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
 
+let g:syntastic_ruby_checkers = [ 'mri', 'rubocop' ]
+
 " syntastic error window toggle
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
