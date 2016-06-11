@@ -75,6 +75,11 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " Load man page plugin
 runtime ftplugin/man.vim
 
+" Function for getting the syntax element under the cursor
+function PrintSyntaxUnderCursor()
+    echo synIDattr(synID(line("."),col("."),0),"name")
+endfunction
+
 " ------------------------------------------------------------------------------
 " GuiVim
 " ------------------------------------------------------------------------------
