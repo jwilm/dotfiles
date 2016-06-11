@@ -1,7 +1,15 @@
 if has("nvim")
   nmap <BS> <C-W>h
-  set termguicolors
 end
+
+" ------------------------------------------------------------------------------
+" color scheme and syntax highlighting
+" ------------------------------------------------------------------------------
+
+syntax enable
+colorscheme Tomorrow-Night-Bright
+set termguicolors
+let ruby_no_expensive = 1
 
 " Fix backspaces in vim 7.4 on mac
 set backspace=2
@@ -220,24 +228,6 @@ endfunction
 
 " bring up syntastic error list
 nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
-
-
-" ------------------------------------------------------------------------------
-" color scheme and syntax highlighting
-" ------------------------------------------------------------------------------
-
-syntax enable
-set background=dark
-colorscheme Tomorrow-Night-Bright
-
-" Tweak js highlighting for solarized
-if g:colors_name == 'solarized'
-    " `Special` in solarized is red. It's distracting. Fix it.
-    hi link jsThis Identifier
-    hi link jsGlobalObjects Identifier
-    hi link jsBuiltins Identifier
-    hi link jsPrototype Identifier
-endif
 
 
 " ------------------------------------------------------------------------------
