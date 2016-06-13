@@ -244,7 +244,7 @@ let g:ycm_server_log_level = 'debug'
 let g:ycm_global_ycm_extra_conf = $HOME . '/.dotfiles/.ycm_extra_conf.py'
 
 " Rust source path for YCM
-let g:ycm_rust_src_path  = $HOME . '/rs/std/stable'
+let g:ycm_rust_src_path  = $HOME . '/rs/std/stable/src'
 let g:ycm_racerd_binary_path = $HOME . '/code/racerd/target/release/racerd'
 
 nnoremap <F5> :YcmRestartServer<CR>
