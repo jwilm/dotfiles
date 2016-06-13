@@ -70,9 +70,6 @@
 [submodule "vim/bundle/vim-bundler"]
 	path = vim/bundle/vim-bundler
 	url = git@github.com:tpope/vim-bundler.git
-[submodule "vim/bundle/cargo.vim"]
-	path = vim/bundle/cargo.vim
-	url = git@github.com:jwilm/cargo.vim
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
