@@ -22,8 +22,5 @@ if [[ $platform == *Darwin* ]] ; then
     git config --global credential.helper osxkeychain
 fi
 
-# Forces ssh on github
-git config --global url.ssh://git@github.com/.insteadOf https://github.com/
-
 git config --global merge.conflictstyle diff3
 
