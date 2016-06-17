@@ -86,6 +86,8 @@ export PATH=$PATH:/usr/local/android-ndk
 
 # Local pip installs
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
+# rbenv
+export PATH=$HOME/.rbenv/bin:$PATH
 
 # Ag alias
 alias ag='ag --ignore tags'
@@ -109,4 +111,20 @@ cclear() {
     clear && tmux clear-history
 }
 
+# Activate rbenv
+eval "$(rbenv init -)"
+
+# ------------------------------------------------------------------------------
+# Syntax Highlighting
+# ------------------------------------------------------------------------------
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[path]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[command]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[function]='fg=magenta'
+
+# This must come last in the zshrc.
 source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
