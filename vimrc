@@ -7,6 +7,9 @@ colorscheme Tomorrow-Night-Bright
 set termguicolors
 let ruby_no_expensive = 1
 
+execute "set t_8f=\e[38;2;%lu;%lu;%lum"
+execute "set t_8b=\e[48;2;%lu;%lu;%lum"
+
 " Fix backspaces in vim 7.4 on mac
 set backspace=2
 
