@@ -289,3 +289,7 @@ let g:vim_markdown_folding_disabled=1
 " Anything that uses vim conceal is banished
 let g:vim_json_syntax_conceal = 0
 
+" ------------------------------------------------------------------------------
+" gundo
+" ------------------------------------------------------------------------------
+nnoremap <F7> :GundoToggle<CR>
