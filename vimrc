@@ -35,7 +35,7 @@ set tabstop=4           " columns per tab
 set shiftwidth=4        " tabs expand to spaces with expandtab on
 set smarttab            " backspace tabwidths at start of line
 set expandtab           " expand tabs into spaces
-set cursorline          " Hightlights current line of cursor
+" set cursorline          " Hightlights current line of cursor
 set completeopt=menu    " shows completions in popup
 set modeline            " read modelines at start of files
 set colorcolumn=81      " add ruler at column
