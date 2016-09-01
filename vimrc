@@ -153,6 +153,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" {Visual}gq that switches to 80 columns and back to 100. This is primarily
+" useful while programming in the Rust Programming Language.
+vmap <Leader>c :<C-u>set tw=80<CR>gvgq:set tw=100<CR>
+
 " Clear search highlights
 nnoremap <silent> <Space><Space> :let @/ = ""<CR>
 
