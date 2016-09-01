@@ -403,6 +403,8 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rustModPathSep", s:orange, "", "")
 	call <SID>X("rustTodo", s:yellow, "", "bold")
 
+	call <SID>X("yamlKeyValueDelimiter", s:aqua, "", "")
+
 	" Git Highlighting
 	call <SID>X("gitcommitSelectedType", s:green, "", "")
 	call <SID>X("gitcommitSelectedFile", s:foreground, "", "")
@@ -412,6 +414,17 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("gitcommitBranch", s:blue, "", "")
 	call <SID>X("gitcommitSummary", s:purple, "", "bold")
 	call <SID>X("gitcommitUntrackedFile", s:comment, "", "")
+
+	call <SID>X("mkdCode", s:purple, "", "")
+	call <SID>X("mkdListItem", s:aqua, "", "")
+	call <SID>X("mkdLink", s:blue, "", "")
+	call <SID>X("mkdURL", s:comment, "", "")
+	call <SID>X("htmlH1", s:red, "", "")
+	call <SID>X("htmlH2", s:orange, "", "")
+	call <SID>X("htmlH3", s:orange, "", "")
+	call <SID>X("htmlH4", s:orange, "", "")
+	call <SID>X("htmlH5", s:orange, "", "")
+	call <SID>X("htmlH6", s:orange, "", "")
 
 	" Delete Functions
 	delf <SID>X
