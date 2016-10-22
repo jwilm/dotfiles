@@ -57,12 +57,13 @@ set tags=./tags;/       " tags file
 set tags+=~/tags        " other places for tags
 set splitbelow          " open horizontal splits below
 set splitright          " open vertical splits to right
+set nottyfast
 
 " Code Folding
 set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
-set foldlevel=1
+set foldlevel=100
 
 " Change listchars to something sensible
 " set list listchars=tab:»·,trail:·
@@ -121,7 +122,7 @@ augroup END
 " Filetype specific settings
 " ------------------------------------------------------------------------------
 
-au FileType gitcommit set tw=72
+au FileType gitcommit set tw=72 cc=73
 autocmd BufNewFile,BufReadPost .bash_aliases* set filetype=sh
 autocmd BufNewFile,BufReadPost *.yml setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2
@@ -293,3 +294,15 @@ let g:vim_json_syntax_conceal = 0
 " gundo
 " ------------------------------------------------------------------------------
 nnoremap <F7> :GundoToggle<CR>
+
+" ------------------------------------------------------------------------------
+" Command-T
+" ------------------------------------------------------------------------------
+
+let g:CommandTAcceptSelectionSplitMap = '<C-x>'
+let g:CommandTCancelMap = '<Esc>'
+
+" Hacked to use ag
+let g:CommandTFileScanner = 'find'
+
+nnoremap <C-p> :CommandT<CR>
