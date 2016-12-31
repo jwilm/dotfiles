@@ -9,13 +9,13 @@ let s:background = "000000"
 let s:selection = "424242"
 let s:line = "2a2a2a"
 let s:comment = "767876"
-let s:red = "d54e53"
-let s:orange = "e78c45"
-let s:yellow = "e7c547"
-let s:green = "b9ca4a"
-let s:aqua = "70c0b1"
-let s:blue = "7aa6da"
-let s:purple = "c397d8"
+let s:red = "df6566"
+let s:orange = "ed9e56"
+let s:yellow = "ecce58"
+let s:green = "c5d15c"
+let s:aqua = "81cabf"
+let s:blue = "8cb6e1"
+let s:purple = "cfabe0"
 let s:window = "4d5057"
 let s:diffbg = "232323"
 
@@ -403,7 +403,10 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rustModPathSep", s:orange, "", "")
 	call <SID>X("rustTodo", s:yellow, "", "bold")
 
+    call <SID>X("SpellBad", "", "", "underline")
+
 	call <SID>X("yamlKeyValueDelimiter", s:aqua, "", "")
+	call <SID>X("yamlTodo", s:yellow, "", "bold")
 
 	" Git Highlighting
 	call <SID>X("gitcommitSelectedType", s:green, "", "")
