@@ -85,3 +85,6 @@
 [submodule "vim/bundle/command-t"]
 	path = vim/bundle/command-t
 	url = https://github.com/wincent/command-t.git
+[submodule "vim/bundle/vim-capnp"]
+	path = vim/bundle/vim-capnp
+	url = https://github.com/cstrahan/vim-capnp.git

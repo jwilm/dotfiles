@@ -13,6 +13,8 @@ execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 " Fix backspaces in vim 7.4 on mac
 set backspace=2
 
+set belloff=all
+
 " Use pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
@@ -58,6 +60,11 @@ set tags+=~/tags        " other places for tags
 set splitbelow          " open horizontal splits below
 set splitright          " open vertical splits to right
 set nottyfast
+
+" Modal cursor shapes
+let &t_SI = "\<Esc>[6 q" "start insert mode (bar)
+let &t_SR = "\<Esc>[4 q" "start replace mode (underline)
+let &t_EI = "\<Esc>[2 q" "end insert or replace mode (block)
 
 " Code Folding
 set foldmethod=indent
@@ -122,7 +129,7 @@ augroup END
 " Filetype specific settings
 " ------------------------------------------------------------------------------
 
-au FileType gitcommit set tw=72 cc=73
+au FileType gitcommit set tw=72 cc=73 spell
 autocmd BufNewFile,BufReadPost .bash_aliases* set filetype=sh
 autocmd BufNewFile,BufReadPost *.yml setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2
@@ -131,6 +138,7 @@ autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.rb setl sw=2 ts=2 nocursorline
 autocmd BufNewFile,BufReadPost *.rs setl sw=4 ts=4 tw=100 cc=101
+autocmd BufNewFile,BufReadPost *.rs.in setl sw=4 ts=4 tw=100 cc=101
 autocmd BufNewFile,BufReadPost *.py setl sw=2 ts=2 tw=79 cc=80 nocindent
 autocmd BufNewFile,BufReadPost *.rs hi link rustCommentLineDoc Comment
 
@@ -248,7 +256,7 @@ let g:ycm_server_log_level = 'debug'
 let g:ycm_global_ycm_extra_conf = $HOME . '/.dotfiles/.ycm_extra_conf.py'
 
 " Rust source path for YCM
-let g:ycm_rust_src_path  = $HOME . '/rs/std/stable/src'
+let g:ycm_rust_src_path  = '/home/jwilm/.multirust/toolchains/nightly-2016-11-25-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:ycm_racerd_binary_path = $HOME . '/code/racerd/target/release/racerd'
 
 nnoremap <F5> :YcmRestartServer<CR>
@@ -303,6 +311,12 @@ let g:CommandTAcceptSelectionSplitMap = '<C-x>'
 let g:CommandTCancelMap = '<Esc>'
 
 " Hacked to use ag
-let g:CommandTFileScanner = 'find'
+let g:CommandTFileScanner = 'git'
 
 nnoremap <C-p> :CommandT<CR>
+
+" Focus! These bindings are used by i3-vim-focus
+map gwl :call Focus('right','l')<CR>
+map gwh :call Focus('left','h')<CR>
+map gwk :call Focus('up','k')<CR>
+map gwj :call Focus('down','j')<CR>

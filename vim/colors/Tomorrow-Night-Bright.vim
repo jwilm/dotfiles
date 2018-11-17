@@ -5,7 +5,7 @@
 
 " Default GUI Colours
 let s:foreground = "eaeaea"
-let s:background = "000000"
+let s:background = ""
 let s:selection = "424242"
 let s:line = "2a2a2a"
 let s:comment = "767876"
@@ -289,7 +289,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("SpecialChar", s:red, "", "")
 	call <SID>X("Tag", s:red, "", "")
 	call <SID>X("Delimiter", s:aqua, "", "")
-	call <SID>X("SpecialComment", s:red, "", "")
+	call <SID>X("SpecialComment", s:comment, "", "")
 	call <SID>X("Debug", s:red, "", "")
 
 	call <SID>X("PreProc", s:red, "", "none")
@@ -399,6 +399,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
   " Rust highlighting
 	call <SID>X("rustSigil", s:aqua, "", "")
 	call <SID>X("rustAssert", s:red, "", "")
+	call <SID>X("rustLifetime", s:red, "", "italic")
 	call <SID>X("rustSelf", s:purple, "", "")
 	call <SID>X("rustModPathSep", s:orange, "", "")
 	call <SID>X("rustTodo", s:yellow, "", "bold")
