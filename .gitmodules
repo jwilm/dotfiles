@@ -55,9 +55,6 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
-[submodule "vim/bundle/toml"]
-	path = vim/bundle/toml
-	url = https://github.com/cespare/vim-toml.git
 [submodule "vim-cpp-enhanced-highlight"]
 	path = vim/bundle/cpp-enhanced-highlight
 	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
