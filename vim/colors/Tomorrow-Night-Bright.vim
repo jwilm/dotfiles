@@ -404,7 +404,7 @@ if has("gui_running") || &t_Co == 88 || &t_Co == 256
 	call <SID>X("rustModPathSep", s:orange, "", "")
 	call <SID>X("rustTodo", s:yellow, "", "bold")
 
-    call <SID>X("SpellBad", "", "", "underline")
+    call <SID>X("SpellBad", "000000", s:red, "underline")
 
 	call <SID>X("yamlKeyValueDelimiter", s:aqua, "", "")
 	call <SID>X("yamlTodo", s:yellow, "", "bold")
