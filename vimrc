@@ -1,9 +1,31 @@
 " ------------------------------------------------------------------------------
 " color scheme and syntax highlighting
 " ------------------------------------------------------------------------------
+"
+set nocompatible
+
+" Enable undercurls in terminal
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
+
+" Enable underline colors (ANSI), see alacritty #4660
+let &t_AU = "\<esc>[58;5;%dm"
+" Enable underline colors (RGB), see alacritty #4660
+ let &t_8u = "\<esc>[58;2;%lu;%lu;%lum"
 
 syntax enable
 colorscheme Tomorrow-Night-Bright
+
+" This sets undercurls to Red
+hi SpellCap       term=undercurl ctermbg=NONE gui=underline guisp=Red cterm=underline
+
+" Ycm colors to match tomorrow-night-bright
+hi YcmErrorSection ctermbg=NONE guibg=NONE cterm=undercurl gui=undercurl guisp=#df6566
+hi YcmWarningSection  ctermbg=NONE guibg=NONE cterm=undercurl gui=undercurl guisp=#ecce58
+hi YcmErrorSign ctermbg=Red guibg=#df6566 cterm=undercurl gui=undercurl guisp=#df6566
+hi YcmWarningSign  ctermbg=Yellow guibg=#ecce58 cterm=undercurl gui=undercurl guisp=#ecce58 ctermfg=black guifg=#232323
+hi SignColumn guibg=#111111 ctermbg=darkgrey
+
 set termguicolors
 let ruby_no_expensive = 1
 
@@ -12,6 +34,8 @@ execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 
 " Fix backspaces in vim 7.4 on mac
 set backspace=2
+
+set belloff=all
 
 " Use pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
@@ -58,6 +82,11 @@ set tags+=~/tags        " other places for tags
 set splitbelow          " open horizontal splits below
 set splitright          " open vertical splits to right
 set nottyfast
+
+" Modal cursor shapes
+let &t_SI = "\<Esc>[6 q" "start insert mode (bar)
+let &t_SR = "\<Esc>[4 q" "start replace mode (underline)
+let &t_EI = "\<Esc>[2 q" "end insert or replace mode (block)
 
 " Code Folding
 set foldmethod=indent
@@ -122,7 +151,8 @@ augroup END
 " Filetype specific settings
 " ------------------------------------------------------------------------------
 
-au FileType gitcommit set tw=72 cc=73
+au FileType gitcommit set tw=72 cc=73 spell
+au FileType yaml set sw=2 ts=2
 autocmd BufNewFile,BufReadPost .bash_aliases* set filetype=sh
 autocmd BufNewFile,BufReadPost *.yml setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.js setl sw=2 ts=2
@@ -131,6 +161,7 @@ autocmd BufNewFile,BufReadPost *.hbs setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.html setl sw=2 ts=2
 autocmd BufNewFile,BufReadPost *.rb setl sw=2 ts=2 nocursorline
 autocmd BufNewFile,BufReadPost *.rs setl sw=4 ts=4 tw=100 cc=101
+autocmd BufNewFile,BufReadPost *.rs.in setl sw=4 ts=4 tw=100 cc=101
 autocmd BufNewFile,BufReadPost *.py setl sw=2 ts=2 tw=79 cc=80 nocindent
 autocmd BufNewFile,BufReadPost *.rs hi link rustCommentLineDoc Comment
 
@@ -203,38 +234,31 @@ endif
 
 let g:ctrlp_working_path_mode='c'
 
-
 " ------------------------------------------------------------------------------
-" syntastic
+"  ale
 " ------------------------------------------------------------------------------
+let g:ale_linters = { 'ruby': ['rubocop'], 'rust': [], 'zsh': ['shell'] }
 
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_jshint_conf = '~/.jshintrc'
-let g:syntastic_java_javac_config_file_enabled = 1
-
-" Syntastic python settings
-let g:syntastic_python_checkers = [ 'flake8', 'python' ]
-let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
-
-let g:syntastic_ruby_checkers = [ 'mri', 'rubocop' ]
-
-" syntastic error window toggle
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-    " Nothing was closed, open syntastic error location
-        Errors
-    endif
-endfunction
-
+" " ------------------------------------------------------------------------------
+" " syntastic
+" " ------------------------------------------------------------------------------
+" 
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_enable_signs = 1
+" let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_jshint_conf = '~/.jshintrc'
+" let g:syntastic_java_javac_config_file_enabled = 1
+" 
+" " Syntastic python settings
+" let g:syntastic_python_checkers = [ 'flake8', 'python' ]
+" let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+" 
+" let g:syntastic_ruby_checkers = [ 'mri', 'rubocop' ]
+" 
+" " syntastic error window toggle
 " bring up syntastic error list
-nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
-
 
 " ------------------------------------------------------------------------------
 " YouCompleteMe
@@ -247,15 +271,13 @@ let g:ycm_server_log_level = 'debug'
 " Global extra conf is the .ycm_extra_conf.py in the dotfiles folder
 let g:ycm_global_ycm_extra_conf = $HOME . '/.dotfiles/.ycm_extra_conf.py'
 
-" Rust source path for YCM
-let g:ycm_rust_src_path  = $HOME . '/rs/std/stable/src'
-let g:ycm_racerd_binary_path = $HOME . '/code/racerd/target/release/racerd'
-
 nnoremap <F5> :YcmRestartServer<CR>
 nnoremap <F6> :YcmToggleLogs<CR>
 
 nnoremap <Leader>] :YcmCompleter GoTo<CR>
+nnoremap <Leader>[ <Plug>(YCMFindSymbolInWorkspace)
 
+let g:lt_location_list_toggle_map = ';'
 
 " ------------------------------------------------------------------------------
 " ultisnips
@@ -303,6 +325,17 @@ let g:CommandTAcceptSelectionSplitMap = '<C-x>'
 let g:CommandTCancelMap = '<Esc>'
 
 " Hacked to use ag
-let g:CommandTFileScanner = 'find'
+let g:CommandTFileScanner = 'git'
 
 nnoremap <C-p> :CommandT<CR>
+
+" Focus! These bindings are used by i3-vim-focus
+map gwl :call Focus('right','l')<CR>
+map gwh :call Focus('left','h')<CR>
+map gwk :call Focus('up','k')<CR>
+map gwj :call Focus('down','j')<CR>
+
+" ---------
+" rust.vim
+" ---------
+let g:rustfmt_autosave = 1
