@@ -85,3 +85,21 @@
 [submodule "vim/bundle/vim-capnp"]
 	path = vim/bundle/vim-capnp
 	url = https://github.com/cstrahan/vim-capnp.git
+[submodule "vim/bundle/ListToggle"]
+	path = vim/bundle/ListToggle
+	url = https://github.com/Valloric/ListToggle
+[submodule "vim/bundle/fzf.vim"]
+	path = vim/bundle/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule "vim/bundle/fzf"]
+	path = vim/bundle/fzf
+	url = https://github.com/junegunn/fzf
+[submodule "vim/bundle/vim-lua-ftplugin"]
+	path = vim/bundle/vim-lua-ftplugin
+	url = https://github.com/xolox/vim-lua-ftplugin.git
+[submodule "vim/bundle/vim-misc"]
+	path = vim/bundle/vim-misc
+	url = https://github.com/xolox/vim-misc.git
+[submodule "vim/bundle/vim-lua"]
+	path = vim/bundle/vim-lua
+	url = https://github.com/tbastos/vim-lua.git

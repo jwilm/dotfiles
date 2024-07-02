@@ -10,6 +10,11 @@ let ruby_no_expensive = 1
 execute "set t_8f=\e[38;2;%lu;%lu;%lum"
 execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 
+let &t_Cs = "\e[4:3;58:2:213:78:83m"
+let &t_Ce = "\e[4:0m"
+hi clear SpellBad
+hi SpellBad     gui=undercurl guisp=red term=undercurl cterm=undercurl
+
 " Fix backspaces in vim 7.4 on mac
 set backspace=2
 
@@ -93,6 +98,11 @@ runtime ftplugin/man.vim
 " Function for getting the syntax element under the cursor
 function PrintSyntaxUnderCursor()
     echo synIDattr(synID(line("."),col("."),0),"name")
+endfunction
+
+
+function PrintHighlightingUnderCursor()
+  echo execute 'hi' synIDattr(synID(line("."), col("."), 1), "name")
 endfunction
 
 " ------------------------------------------------------------------------------
@@ -190,6 +200,15 @@ function! s:RunCargoTest()
 endfunction
 nnoremap <silent> <F8> :silent :Ctest<CR>
 
+function! SynStack ()
+    for i1 in synstack(line("."), col("."))
+        let i2 = synIDtrans(i1)
+        let n1 = synIDattr(i1, "name")
+        let n2 = synIDattr(i2, "name")
+        echo n1 "->" n2
+    endfor
+endfunction
+map gm :call SynStack()<CR>
 " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 " @@@@@@@@@@@@@@@@@@@@@@@@@@@ PLUGIN CONFIGURATION @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 " @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -243,6 +262,11 @@ endfunction
 " bring up syntastic error list
 nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
 
+" Make sure rust.vim doesn't enable syntastic; we use ycm with background
+" checking.
+let g:syntastic_rust_checkers = []
+let g:syntastic_extra_filetypes = []
+
 
 " ------------------------------------------------------------------------------
 " YouCompleteMe
@@ -258,6 +282,7 @@ let g:ycm_global_ycm_extra_conf = $HOME . '/.dotfiles/.ycm_extra_conf.py'
 " Rust source path for YCM
 let g:ycm_rust_src_path  = '/home/jwilm/.multirust/toolchains/nightly-2016-11-25-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:ycm_racerd_binary_path = $HOME . '/code/racerd/target/release/racerd'
+let g:ycm_enable_diagnostic_highlighting = 0
 
 nnoremap <F5> :YcmRestartServer<CR>
 nnoremap <F6> :YcmToggleLogs<CR>
@@ -301,6 +326,7 @@ let g:vim_json_syntax_conceal = 0
 " ------------------------------------------------------------------------------
 " gundo
 " ------------------------------------------------------------------------------
+let g:gundo_prefer_python3 = 1
 nnoremap <F7> :GundoToggle<CR>
 
 " ------------------------------------------------------------------------------
@@ -310,7 +336,6 @@ nnoremap <F7> :GundoToggle<CR>
 let g:CommandTAcceptSelectionSplitMap = '<C-x>'
 let g:CommandTCancelMap = '<Esc>'
 
-" Hacked to use ag
 let g:CommandTFileScanner = 'git'
 
 nnoremap <C-p> :CommandT<CR>
@@ -320,3 +345,14 @@ map gwl :call Focus('right','l')<CR>
 map gwh :call Focus('left','h')<CR>
 map gwk :call Focus('up','k')<CR>
 map gwj :call Focus('down','j')<CR>
+
+cnoremap <C-j> <Up>
+cnoremap <C-k> <Down>
+
+" ------------------------------------------------------------------------------
+" ListToggle
+" ------------------------------------------------------------------------------
+
+let g:lt_location_list_toggle_map = ';'
+let g:lt_height = 10
+let g:rustfmt_autosave = 1

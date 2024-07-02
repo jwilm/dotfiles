@@ -78,16 +78,21 @@ alias gsl="git --no-pager stash list"
 export PS1="%n@%M ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%~ % %{$reset_color%} "
 
 export EDITOR=vim
+alias vim='/usr/local/bin/vim --servername "VIM:$RANDOM"'
 
 # Android stuff
-export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/local/android-sdk-linux/tools
-export PATH=$PATH:/usr/local/android-sdk-linux/platform-tools
-export PATH=$PATH:/usr/local/android-ndk
+# export PATH=$HOME/bin:/usr/local/bin:$PATH:/usr/local/android-sdk-linux/tools
+# export PATH=$PATH:/usr/local/android-sdk-linux/platform-tools
+# export PATH=$PATH:/usr/local/android-ndk
 
 # Local pip installs
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
 # rbenv
 export PATH=$HOME/.rbenv/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+
+# NPM "global" installs
+export PATH=$PATH:$HOME/node/bin
 
 # Ag alias
 alias ag='ag --ignore tags'
@@ -114,7 +119,7 @@ cclear() {
 eval "$(rbenv init -)"
 
 export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # ------------------------------------------------------------------------------
 # Read escape sequences from terminfo
@@ -230,9 +235,6 @@ ZSH_HIGHLIGHT_STYLES[function]='fg=magenta'
 
 source ~/.cargo/env
 
-# This must come last in the zshrc.
-source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
 
@@ -256,3 +258,13 @@ PERL_MM_OPT="INSTALL_BASE=/home/jwilm/perl5"; export PERL_MM_OPT;
 #setopt AUTO_PUSHD HIST_IGNORE_DUPS PUSHD_IGNORE_DUPS
 #zstyle ':completion::complete:n-kill::bits' matcher 'r:|=** l:|=*'
 ### END ###
+  #- [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias k=kubectl
+
+#
+# This must come last in the zshrc.
+source $HOME/.dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
