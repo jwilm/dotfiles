@@ -1,3 +1,6 @@
+
+let g:CommandTPreferredImplementation='ruby'
+
 " ------------------------------------------------------------------------------
 " color scheme and syntax highlighting
 " ------------------------------------------------------------------------------
@@ -10,10 +13,26 @@ let ruby_no_expensive = 1
 execute "set t_8f=\e[38;2;%lu;%lu;%lum"
 execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 
+" Enable underline colors (ANSI), see alacritty #4660
+let &t_AU = "\<esc>[58;5;%dm"
+" Enable underline colors (RGB), see alacritty #4660
+let &t_8u = "\<esc>[58;2;%lu;%lu;%lum"
+" Enable undercurls in terminal
 let &t_Cs = "\e[4:3;58:2:213:78:83m"
 let &t_Ce = "\e[4:0m"
+
 hi clear SpellBad
 hi SpellBad     gui=undercurl guisp=red term=undercurl cterm=undercurl
+
+" This sets undercurls to Red
+hi SpellCap       term=undercurl ctermbg=NONE gui=underline guisp=Red cterm=underline
+
+" Ycm colors to match tomorrow-night-bright
+hi YcmErrorSection ctermbg=NONE guibg=NONE cterm=undercurl gui=undercurl guisp=#df6566
+hi YcmWarningSection  ctermbg=NONE guibg=NONE cterm=undercurl gui=undercurl guisp=#ecce58
+hi YcmErrorSign ctermbg=Red guibg=#df6566 cterm=undercurl gui=undercurl guisp=#df6566
+hi YcmWarningSign  ctermbg=Yellow guibg=#ecce58 cterm=undercurl gui=undercurl guisp=#ecce58 ctermfg=black guifg=#232323
+hi SignColumn guibg=#111111 ctermbg=darkgrey
 
 " Fix backspaces in vim 7.4 on mac
 set backspace=2
@@ -235,37 +254,37 @@ let g:ctrlp_working_path_mode='c'
 " syntastic
 " ------------------------------------------------------------------------------
 
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_enable_signs = 1
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_jshint_conf = '~/.jshintrc'
-let g:syntastic_java_javac_config_file_enabled = 1
-
-" Syntastic python settings
-let g:syntastic_python_checkers = [ 'flake8', 'python' ]
-let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
-
-let g:syntastic_ruby_checkers = [ 'mri', 'rubocop' ]
-
-" syntastic error window toggle
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-    " Nothing was closed, open syntastic error location
-        Errors
-    endif
-endfunction
-
-" bring up syntastic error list
-nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
-
-" Make sure rust.vim doesn't enable syntastic; we use ycm with background
-" checking.
-let g:syntastic_rust_checkers = []
-let g:syntastic_extra_filetypes = []
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_enable_signs = 1
+" let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_javascript_jshint_conf = '~/.jshintrc'
+" let g:syntastic_java_javac_config_file_enabled = 1
+" 
+" " Syntastic python settings
+" let g:syntastic_python_checkers = [ 'flake8', 'python' ]
+" let g:syntastic_python_flake8_args = '--select=F,C9 --max-complexity=10'
+" 
+" let g:syntastic_ruby_checkers = [ 'mri', 'rubocop' ]
+" 
+" " syntastic error window toggle
+" function! ToggleErrors()
+"     let old_last_winnr = winnr('$')
+"     lclose
+"     if old_last_winnr == winnr('$')
+"     " Nothing was closed, open syntastic error location
+"         Errors
+"     endif
+" endfunction
+" 
+" " bring up syntastic error list
+" nnoremap <silent> ; :<C-e>call ToggleErrors()<CR>
+" 
+" " Make sure rust.vim doesn't enable syntastic; we use ycm with background
+" " checking.
+" let g:syntastic_rust_checkers = []
+" let g:syntastic_extra_filetypes = []
 
 
 " ------------------------------------------------------------------------------
@@ -279,16 +298,11 @@ let g:ycm_server_log_level = 'debug'
 " Global extra conf is the .ycm_extra_conf.py in the dotfiles folder
 let g:ycm_global_ycm_extra_conf = $HOME . '/.dotfiles/.ycm_extra_conf.py'
 
-" Rust source path for YCM
-let g:ycm_rust_src_path  = '/home/jwilm/.multirust/toolchains/nightly-2016-11-25-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
-let g:ycm_racerd_binary_path = $HOME . '/code/racerd/target/release/racerd'
-let g:ycm_enable_diagnostic_highlighting = 0
-
 nnoremap <F5> :YcmRestartServer<CR>
 nnoremap <F6> :YcmToggleLogs<CR>
 
 nnoremap <Leader>] :YcmCompleter GoTo<CR>
-
+nnoremap <Leader>[ <Plug>(YCMFindSymbolInWorkspace)
 
 " ------------------------------------------------------------------------------
 " ultisnips

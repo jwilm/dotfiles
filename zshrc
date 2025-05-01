@@ -247,6 +247,8 @@ PERL_LOCAL_LIB_ROOT="/home/jwilm/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_R
 PERL_MB_OPT="--install_base \"/home/jwilm/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/jwilm/perl5"; export PERL_MM_OPT;
 
+PATH="$PATH:/opt/resolve/bin"
+
 ### ZNT's installer added snippet ###
 #fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
 #autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
