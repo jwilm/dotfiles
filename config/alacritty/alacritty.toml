@@ -1,0 +1,61 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#666666"
+blue = "#7aa6da"
+cyan = "#54ced6"
+green = "#9ec400"
+magenta = "#b77ee0"
+red = "#ff3334"
+white = "#ffffff"
+yellow = "#e7c547"
+
+[colors.dim]
+black = "#000000"
+blue = "#506d8f"
+cyan = "#497e7a"
+green = "#7a8530"
+magenta = "#80638e"
+red = "#8c3336"
+white = "#9a9a9a"
+yellow = "#97822e"
+
+[colors.normal]
+black = "#000000"
+blue = "#7aa6da"
+cyan = "#70c0ba"
+green = "#b9ca4a"
+magenta = "#c397d8"
+red = "#d54e53"
+white = "#eaeaea"
+yellow = "#e6c547"
+
+[colors.primary]
+background = "#000000"
+foreground = "#eaeaea"
+
+[debug]
+render_timer = false
+
+[env]
+TERM = "alacritty"
+
+[font]
+size = 10.0
+
+[keyboard]
+bindings = [
+    { key = 53, mode = "Vi", mods = "Shift", action = "SearchBackward" },
+    { key = "K", mode = "~Alt|~Vi|~Search", mods = "Control", chars = "\u001B\f" },
+    { key = "K", mode = "~Alt|~Vi|~Search", mods = "Control", action = "ClearHistory" },
+    { key = "A", mods = "Control", action = "ToggleViMode" },
+]
+
+[window]
+dynamic_padding = true
+opacity = 1.0
+
+[window.padding]
+x = 0
+y = 0

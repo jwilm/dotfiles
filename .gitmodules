@@ -103,3 +103,6 @@
 [submodule "vim/bundle/vim-lua"]
 	path = vim/bundle/vim-lua
 	url = https://github.com/tbastos/vim-lua.git
+[submodule "config/i3blocks"]
+	path = config/i3blocks
+	url = https://github.com/vivien/i3blocks-contrib
