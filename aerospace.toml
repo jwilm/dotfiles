@@ -1,0 +1,164 @@
+# Reference: https://github.com/i3/i3/blob/next/etc/config
+
+# i3 doesn't have "normalizations" feature that why we disable them here.
+# But the feature is very helpful.
+# Normalizations eliminate all sorts of weird tree configurations that don't make sense.
+# Give normalizations a chance and enable them back.
+enable-normalization-flatten-containers = false
+enable-normalization-opposite-orientation-for-nested-containers = false
+
+# Run Sketchybar together with AeroSpace
+# sketchybar has a built-in detection of already running process,
+# so it won't be run twice on AeroSpace restart
+after-startup-command = ['exec-and-forget sketchybar']
+
+# Notify Sketchybar about workspace change
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
+
+# Mouse follows focus when focused monitor changes
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Start AeroSpace at login
+start-at-login = true
+
+[mode.main.binding]
+    # i3-like open terminal shortcut
+    alt-enter = 'exec-and-forget open -n /Volumes/Macintosh\ HD/Applications/Alacritty.app'
+
+    cmd-h = [] # Disable "hide application"
+    cmd-alt-h = [] # Disable "hide others"
+
+    # i3 wraps focus by default
+    alt-h = 'focus --boundaries-action wrap-around-the-workspace left'
+    alt-j = 'focus --boundaries-action wrap-around-the-workspace down'
+    alt-k = 'focus --boundaries-action wrap-around-the-workspace up'
+    alt-l = 'focus --boundaries-action wrap-around-the-workspace right'
+
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    alt-shift-q = 'close'
+
+    # Consider using 'join-with' command as a 'split' replacement if you want to enable
+    # normalizations
+    alt-v = 'split horizontal'
+    alt-x = 'split vertical'
+
+    alt-f = 'fullscreen'
+
+    alt-b = 'balance-sizes'
+    alt-s = 'layout v_accordion' # 'layout stacking' in i3
+    alt-w = 'layout h_accordion' # 'layout tabbed' in i3
+    alt-e = 'layout tiles horizontal vertical' # 'layout toggle split' in i3
+
+    alt-shift-space = 'layout floating tiling' # 'floating toggle' in i3
+
+    # Not supported, because this command is redundant in AeroSpace mental model.
+    # See: https://nikitabobko.github.io/AeroSpace/guide#floating-windows
+    #alt-space = 'focus toggle_tiling_floating'
+
+    # `focus parent`/`focus child` are not yet supported, and it's not clear whether they
+    # should be supported at all https://github.com/nikitabobko/AeroSpace/issues/5
+    # alt-a = 'focus parent'
+
+    alt-1 = 'workspace 1-Browse'
+    alt-2 = 'workspace 2-Plan'
+    alt-3 = 'workspace 3-Edit'
+    alt-4 = 'workspace 4-Docs'
+    alt-5 = 'workspace 5-Meet'
+    alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
+    alt-8 = 'workspace 8-Personal'
+    alt-9 = 'workspace 9-Music'
+    alt-0 = 'workspace 10-Chat'
+
+    alt-shift-1 = 'move-node-to-workspace 1-Browse'
+    alt-shift-2 = 'move-node-to-workspace 2-Plan'
+    alt-shift-3 = 'move-node-to-workspace 3-Edit'
+    alt-shift-4 = 'move-node-to-workspace 4-Docs'
+    alt-shift-5 = 'move-node-to-workspace 5-Meet'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-8 = 'move-node-to-workspace 8-Personal'
+    alt-shift-9 = 'move-node-to-workspace 9-Music'
+    alt-shift-0 = 'move-node-to-workspace 10-Chat'
+
+    alt-shift-c = 'reload-config'
+
+    alt-r = 'mode resize'
+
+[mode.resize.binding]
+    h = 'resize width -50'
+    j = 'resize height +50'
+    k = 'resize height -50'
+    l = 'resize width +50'
+    left = 'resize width -50'
+    up = 'resize height +50'
+    down = 'resize height -50'
+    right = 'resize width +50'
+    enter = 'mode main'
+    esc = 'mode main'
+
+[workspace-to-monitor-force-assignment]
+1-Browse = 'main'
+2-Plan = 'main'
+3-Edit = 'main'
+4-Docs = 'secondary'
+5-Meet = 'secondary'
+6 = 'secondary'
+7 = 'secondary'
+8-Personal = 'secondary'
+9-Music = 'secondary'
+10-Chat = 'secondary'
+
+[gaps]
+inner.horizontal = 0
+inner.vertical = 0
+outer.left = 0
+outer.right = 0
+outer.bottom = 0
+outer.top = [
+  { monitor."built-in" = 10 },
+  { monitor."main" = 40 },
+  0
+]
+
+[[on-window-detected]]
+    if.app-id = 'org.mozilla.firefox'
+    run = ['move-node-to-workspace 1-Browse']
+
+[[on-window-detected]]
+    if.app-id = 'com.linear'
+    run = ['move-node-to-workspace 2-Plan']
+
+[[on-window-detected]]
+    if.app-id = 'dev.zed.Zed'
+    run = ['move-node-to-workspace 3-Edit']
+
+[[on-window-detected]]
+    if.app-id = 'md.obsidian'
+    run = ['move-node-to-workspace 4-Docs']
+
+[[on-window-detected]]
+    if.app-id = 'notion.id'
+    run = ['move-node-to-workspace 4-Docs']
+
+[[on-window-detected]]
+    if.app-id = 'com.bitwarden.desktop'
+    run = ['move-node-to-workspace 9-Music']
+
+[[on-window-detected]]
+    if.app-id = 'com.spotify.client'
+    run = ['move-node-to-workspace 9-Music']
+
+[[on-window-detected]]
+    if.app-id = 'com.tinyspeck.slackmacgap'
+    run = ['move-node-to-workspace 10-Chat']
+
+[[on-window-detected]]
+    if.app-id = 'com.superhuman.electron'
+    run = ['move-node-to-workspace 10-Chat']
